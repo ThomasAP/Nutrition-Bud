@@ -22,9 +22,8 @@ namespace NutritionBud.Controllers
             return View();
         }
 
-        public IActionResult Food()
+        public IActionResult About()
         {
-            ViewData["Message"] = "This page will allow for the viewing and addition of foods.";
 
             return View();
         }
