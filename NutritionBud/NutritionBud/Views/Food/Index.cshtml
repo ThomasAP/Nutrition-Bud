@@ -1,11 +1,11 @@
 ﻿@{
 
-    
+
 }
 
 <h1>Food</h1>
 
-<p><a asp-controller="Food" asp-action="Add">Add</a></p>
+<p><a asp-controller="Food" asp-action="Add">Add</a> | <a asp-controller="Food" asp-action="Remove">Remove</a></p>
 
 <hr />
 
@@ -13,14 +13,23 @@
 {
     <p>No foods yet!</p>
 }
+else
+{ 
+    <table class="table">
+        <tr>
+            <th>Food</th>
+            <th>Price $</th>
+        </tr>
+        @foreach (Food food in ViewBag.foods)
+        {
+        <tr>
+            <td>@food.Name</td>
+            <td>@food.Price</td>
+        </tr>
+        }
+     </table>
+}
 
-<ul>
-    @foreach (string food in ViewBag.foods)
-    {
-        <li>@food</li>
-    }
-</ul>
+        <hr />
 
-<hr />
-
-<p><a asp-controller="Food" asp-action="Add">Add</a></p>
+        <p><a asp-controller="Food" asp-action="Add">Add</a> | <a asp-controller="Food" asp-action="Remove">Remove</a></p>
