@@ -2,11 +2,11 @@
 
 <h1>Add Food</h1>
 
-<form method="post" asp-controller="Food" asp-action="Add">
+<form method="post" asp-controller="Food" asp-action="Add" style="max-width:270px;">
 
     
 
-    <div class="form-group">
+    <div class="form-group" >
         <label asp-for="Name"></label>
         <input class="form-control" asp-for="Name" />
         <span class="alert-danger" asp-validation-for="Name"></span>
@@ -14,7 +14,7 @@
     
     <div class="form-group">
         <label asp-for="Price"></label>
-        <input class="form-control" asp-for="Price" />
+        <input class="form-control" asp-for="Price"/>
         <span class="alert-danger" asp-validation-for="Price"></span>
     </div>
     

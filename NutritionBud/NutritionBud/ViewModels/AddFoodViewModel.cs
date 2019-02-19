@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NutritionBud.ViewModels
 {
@@ -12,8 +8,10 @@ namespace NutritionBud.ViewModels
         [Display(Name = "Food Name")]
         public string Name { get; set; }
 
-        [Range(0, 999.99)]
-        [Display(Name = "Price $")]       
+        [Range(0, 100)]
+        [Display(Name = "Price $")]
+        [DataType(DataType.Currency)]
+        [RegularExpression(@"^\$?\d+(\.(\d{2}))?$", ErrorMessage = "Please use XX.XX format.")]
         public decimal Price { get; set; }
 
 
