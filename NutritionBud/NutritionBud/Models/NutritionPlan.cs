@@ -9,14 +9,14 @@ namespace NutritionBud.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int PlanId { get; set; }
+        public int NutritionPlanId { get; set; }
 
         private static int nextId = 1;
 
 
         public NutritionPlan()
         {
-            PlanId = nextId;
+            NutritionPlanId = nextId;
             nextId++;
         }
     }
