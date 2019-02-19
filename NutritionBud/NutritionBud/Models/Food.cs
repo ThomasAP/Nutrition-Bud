@@ -9,18 +9,12 @@ namespace NutritionBud.Models
     {
         public string Name { get; set; }
         public double Price { get; set; }
-        public double FoodId { get; set; }
+        public int FoodId { get; set; }
         private static int nextId = 1;
 
-        public Food(string name, double price)
-        {
-            Name = name;
-            Price = price;
-            FoodId = nextId;
-            nextId++;
-        }
 
-        public Food() {
+        public Food()
+        {
             FoodId = nextId;
             nextId++;
         }

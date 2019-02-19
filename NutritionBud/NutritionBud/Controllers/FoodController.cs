@@ -12,13 +12,13 @@ namespace NutritionBud.Controllers
     public class FoodController : Controller
     {
         //Controller list to hold Foods until Database is running
-        static private List<Food> Foods = new List<Food>();
+        
 
         // GET: /<controller>/
         public IActionResult Index()
         {         
             //TODO: Look into using JSON to persist data before getting to database (or even as an alternative)
-            ViewBag.foods = Foods;
+            ViewBag.foods = FoodData.foods;
 
             return View();
         }
@@ -32,7 +32,13 @@ namespace NutritionBud.Controllers
         public IActionResult Add(string name, double price)
         {
             //Add new food to foods
-            Foods.Add(new Food(name, price));
+            Food newFood = new Food
+            {
+                Name = name,
+                Price = price
+            };
+
+            FoodData.Add(newFood);
 
             return Redirect("/Food");
         }
@@ -40,18 +46,19 @@ namespace NutritionBud.Controllers
         public IActionResult Remove()
         {
             ViewBag.Title = "Remove Foods";
-            ViewBag.foods = Foods;
+            ViewBag.foods = FoodData.GetAll();
             return View();
         }
 
         [HttpPost]
-        public IActionResult Remove(double[] foodIds)
+        public IActionResult Remove(int[] foodIds)
         {
             //TODO: Remove foods from list
-            foreach (double foodId in foodIds)
-            {
-                Foods.RemoveAll(x => x.FoodId == foodId);
+            foreach (int foodId in foodIds)
+            {               
+                FoodData.Remove(foodId);
             }
+            
 
             return Redirect("/");
         }
