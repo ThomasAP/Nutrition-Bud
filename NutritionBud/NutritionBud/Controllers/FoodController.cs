@@ -29,15 +29,9 @@ namespace NutritionBud.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(string name, double price)
+        public IActionResult Add(Food newFood)
         {
             //Add new food to foods
-            Food newFood = new Food
-            {
-                Name = name,
-                Price = price
-            };
-
             FoodData.Add(newFood);
 
             return Redirect("/Food");
