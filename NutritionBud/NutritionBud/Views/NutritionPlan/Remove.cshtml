@@ -1,0 +1,13 @@
+﻿<h1>@ViewBag.Title</h1>
+
+<form asp-controller="NutritionPlan" asp-action="Remove" method="post">
+
+    @foreach (var nutritionPlan in ViewBag.nutritionPlans)
+    {
+        <input type="checkbox" name="nutritionPlanIds" id="@nutritionPlan.NutritionPlanId" value="@nutritionPlan.NutritionPlanId" />
+        <label for="@nutritionPlan.NutritionPlanId">@nutritionPlan.Name</label>
+        <br />
+    }
+
+    <input type="submit" value="Remove Selected Food(s)" />
+</form>

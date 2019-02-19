@@ -14,6 +14,6 @@ namespace NutritionBud.ViewModels
         [RegularExpression(@"^\$?\d+(\.(\d{2}))?$", ErrorMessage = "Please use XX.XX format.")]
         public decimal Price { get; set; }
 
-
+        
     }
 }

@@ -15,13 +15,6 @@ namespace NutritionBud.Controllers
             return View();
         }
 
-        public IActionResult NutritionPlan()
-        {
-            ViewData["Message"] = "This page will allow the viewing and creation of nutrition plans.";
-
-            return View();
-        }
-
         public IActionResult About()
         {
 

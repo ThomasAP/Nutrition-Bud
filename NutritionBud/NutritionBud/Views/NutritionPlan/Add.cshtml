@@ -1,0 +1,24 @@
+﻿@model NutritionBud.ViewModels.AddNutritionPlanViewModel
+
+<h1>Create Your Nutrition Plan</h1>
+
+<form method="post" asp-controller="NutritionPlan" asp-action="Add" style="max-width:270px;">
+
+
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span class="alert-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" asp-for="Description"></textarea>
+        <span class="alert-danger" asp-validation-for="Description"></span>
+    </div>
+
+    <input type="submit" value="Create Nutrition Plan" />
+
+
+</form> 

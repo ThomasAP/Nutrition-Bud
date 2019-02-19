@@ -7,7 +7,10 @@ namespace NutritionBud.Models
 {
     public class NutritionPlanData
     {
+
         public static List<NutritionPlan> nutritionPlans = new List<NutritionPlan>();
+
+
 
         // Get All
         public static List<NutritionPlan> GetAll()
@@ -17,9 +20,9 @@ namespace NutritionBud.Models
 
 
         //Add
-        public static void Add(NutritionPlan newPlan)
+        public static void Add(NutritionPlan newNutritionPlan)
         {
-            nutritionPlans.Add(newPlan);
+            nutritionPlans.Add(newNutritionPlan);
         }
 
 
