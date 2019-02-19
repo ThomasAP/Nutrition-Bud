@@ -4,16 +4,20 @@
 
 <form method="post" asp-controller="Food" asp-action="Add">
 
-    <div class="alert-danger" asp-validation-summary="All"></div>
+    
 
     <div class="form-group">
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" />
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span class="alert-danger" asp-validation-for="Name"></span>
     </div>
+    
     <div class="form-group">
         <label asp-for="Price"></label>
-        <input type="number" name="price" min="0" max="1000" step=".01" />
+        <input class="form-control" asp-for="Price" />
+        <span class="alert-danger" asp-validation-for="Price"></span>
     </div>
+    
     <input type="submit" value="Add Food" />
 
     

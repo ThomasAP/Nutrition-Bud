@@ -11,7 +11,10 @@ namespace NutritionBud.ViewModels
         [Required]
         [Display(Name = "Food Name")]
         public string Name { get; set; }
-        public double Price { get; set; }
+
+        [Range(0, 999.99)]
+        [Display(Name = "Price $")]       
+        public decimal Price { get; set; }
 
 
     }

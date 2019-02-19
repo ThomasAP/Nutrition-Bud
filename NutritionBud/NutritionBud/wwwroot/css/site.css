@@ -34,4 +34,8 @@ body {
     .carousel-caption {
         display: none;
     }
+
+form input {
+    max-width: 270px;
+}
 }
