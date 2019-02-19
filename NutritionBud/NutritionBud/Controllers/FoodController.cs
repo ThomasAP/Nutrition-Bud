@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NutritionBud.Models;
+using NutritionBud.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,23 +19,35 @@ namespace NutritionBud.Controllers
         public IActionResult Index()
         {         
             //TODO: Look into using JSON to persist data before getting to database (or even as an alternative)
-            ViewBag.foods = FoodData.foods;
+            List<Food> foods = FoodData.foods;
 
-            return View();
+            return View(foods);
         }
 
         public IActionResult Add()
         {
-            return View();
+            AddFoodViewModel addFoodViewModel = new AddFoodViewModel();
+            return View(addFoodViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(Food newFood)
+        public IActionResult Add(AddFoodViewModel addFoodViewModel)
         {
-            //Add new food to foods
-            FoodData.Add(newFood);
+            if(ModelState.IsValid)
+            {
+                //Add new food to foods
+                Food newFood = new Food
+                {
+                    Name = addFoodViewModel.Name,
+                    Price = addFoodViewModel.Price
+                };
 
-            return Redirect("/Food");
+                FoodData.Add(newFood);
+
+                return Redirect("/Food");
+            }
+            return View(addFoodViewModel);
+           
         }
 
         public IActionResult Remove()

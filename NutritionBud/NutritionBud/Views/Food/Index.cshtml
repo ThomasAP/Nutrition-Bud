@@ -1,7 +1,4 @@
-﻿@{
-
-
-}
+﻿@model List<NutritionBud.Models.Food>
 
 <h1>Food</h1>
 
@@ -9,7 +6,7 @@
 
 <hr />
 
-@if (ViewBag.foods.Count == 0)
+@if (Model.Count == 0)
 {
     <p>No foods yet!</p>
 }
@@ -18,9 +15,9 @@ else
     <table class="table">
         <tr>
             <th>Food</th>
-            <th>Price $</th>
+            <th>Price</th>
         </tr>
-        @foreach (Food food in ViewBag.foods)
+        @foreach (var food in Model)
         {
         <tr>
             <td>@food.Name</td>
