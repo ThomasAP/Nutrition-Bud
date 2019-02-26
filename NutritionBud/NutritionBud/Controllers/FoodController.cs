@@ -39,7 +39,8 @@ namespace NutritionBud.Controllers
                 Food newFood = new Food
                 {
                     Name = addFoodViewModel.Name,
-                    Price = addFoodViewModel.Price
+                    Price = addFoodViewModel.Price,
+                    CurrentPlan = addFoodViewModel.CurrentPlan
                 };
 
                 FoodData.Add(newFood);

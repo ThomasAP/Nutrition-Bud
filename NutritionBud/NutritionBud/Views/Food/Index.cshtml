@@ -16,12 +16,14 @@ else
         <tr>
             <th>Food</th>
             <th>Price</th>
+            <th>Plan</th>
         </tr>
         @foreach (var food in Model)
         {
         <tr>
             <td>@food.Name</td>
             <td>@food.Price</td>
+            <td>@food.CurrentPlan</td>
         </tr>
         }
      </table>

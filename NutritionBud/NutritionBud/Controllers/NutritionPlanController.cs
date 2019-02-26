@@ -19,14 +19,14 @@ namespace NutritionBud.Controllers
             return View(nutritionPlans);
         }
 
-        //TODO: Handler for Add 
+        
         public IActionResult Add()
         {
             AddNutritionPlanViewModel addNutritionPlanViewModel = new AddNutritionPlanViewModel();
             return View(addNutritionPlanViewModel);
         }
 
-        //TODO: Handler for Add (HttpPost)
+        
         [HttpPost]
         public IActionResult Add(AddNutritionPlanViewModel addNutritionPlanViewModel)
         {
@@ -47,7 +47,7 @@ namespace NutritionBud.Controllers
 
         }
 
-        //TODO: Handler for Remove
+        
         public IActionResult Remove()
         {
             ViewBag.Title = "Remove Nutrition Plans";
