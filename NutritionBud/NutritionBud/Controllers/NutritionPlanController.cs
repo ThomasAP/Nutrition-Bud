@@ -40,7 +40,7 @@ namespace NutritionBud.Controllers
 
                 NutritionPlanData.Add(newNutritionPlan);
 
-                return Redirect("/");
+                return Redirect("/NutritionPlan");
             }
 
             return View(addNutritionPlanViewModel);
@@ -51,7 +51,7 @@ namespace NutritionBud.Controllers
         public IActionResult Remove()
         {
             ViewBag.Title = "Remove Nutrition Plans";
-            ViewBag.foods = NutritionPlanData.GetAll();
+            ViewBag.nutritionPlans = NutritionPlanData.GetAll();
             return View();
         }
 
@@ -61,11 +61,11 @@ namespace NutritionBud.Controllers
             //TODO: Remove foods from list
             foreach (int nutritionPlanId in nutritionPlanIds)
             {
-                FoodData.Remove(nutritionPlanId);
+                NutritionPlanData.Remove(nutritionPlanId);
             }
 
 
-            return Redirect("/");
+            return Redirect("/NutritionPlan");
         }
     }
 }

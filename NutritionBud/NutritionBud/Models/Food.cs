@@ -10,6 +10,7 @@ namespace NutritionBud.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int FoodId { get; set; }
+
         private static int nextId = 1;
 
 

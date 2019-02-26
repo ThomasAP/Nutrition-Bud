@@ -67,7 +67,7 @@ namespace NutritionBud.Controllers
             }
             
 
-            return Redirect("/");
+            return Redirect("/Food");
         }
     }
 }
