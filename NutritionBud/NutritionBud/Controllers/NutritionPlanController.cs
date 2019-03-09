@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NutritionBud.Data;
 using NutritionBud.Models;
 using NutritionBud.ViewModels;
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,10 +14,19 @@ namespace NutritionBud.Controllers
 {
     public class NutritionPlanController : Controller
     {
+
+        private NutritionPlanDbContext context;
+        
         // GET: /<controller>/
+
+        public  NutritionPlanController(NutritionPlanDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
         public IActionResult Index()
         {
-            List<NutritionPlan> nutritionPlans = NutritionPlanData.nutritionPlans;
+            List<NutritionPlan> nutritionPlans = context.NutritionPlans.ToList();
             return View(nutritionPlans);
         }
 
@@ -38,7 +49,8 @@ namespace NutritionBud.Controllers
                     Description = addNutritionPlanViewModel.Description
                 };
 
-                NutritionPlanData.Add(newNutritionPlan);
+                context.NutritionPlans.Add(newNutritionPlan);
+                context.SaveChanges();
 
                 return Redirect("/NutritionPlan");
             }
@@ -51,7 +63,7 @@ namespace NutritionBud.Controllers
         public IActionResult Remove()
         {
             ViewBag.Title = "Remove Nutrition Plans";
-            ViewBag.nutritionPlans = NutritionPlanData.GetAll();
+            ViewBag.nutritionPlans = context.NutritionPlans.ToList();
             return View();
         }
 
@@ -61,8 +73,11 @@ namespace NutritionBud.Controllers
             //TODO: Remove foods from list
             foreach (int nutritionPlanId in nutritionPlanIds)
             {
-                NutritionPlanData.Remove(nutritionPlanId);
+                NutritionPlan thePlan = context.NutritionPlans.Single(n => n.ID == nutritionPlanId);
+                context.NutritionPlans.Remove(thePlan);
             }
+
+            context.SaveChanges();
 
 
             return Redirect("/NutritionPlan");

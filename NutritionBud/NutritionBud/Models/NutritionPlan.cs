@@ -7,17 +7,10 @@ namespace NutritionBud.Models
 {
     public class NutritionPlan
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int NutritionPlanId { get; set; }
-
-        private static int nextId = 1;
-
-
-        public NutritionPlan()
-        {
-            NutritionPlanId = nextId;
-            nextId++;
-        }
+        
+        public IList<Food> Foods { get; set; }
     }
 }

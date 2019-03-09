@@ -1,11 +1,13 @@
-﻿<h1>@ViewBag.Title</h1>
+﻿<!--TODO: Refactor to use ViewModel-->
+
+<h1>@ViewBag.Title</h1>
 
 <form asp-controller="Food" asp-action="Remove" method="post">
 
     @foreach (var food in ViewBag.foods)
     {
-        <input type="checkbox" name="foodIds" id="@food.FoodId" value="@food.FoodId"/>
-        <label for="@food.FoodId">@food.Name</label>
+        <input type="checkbox" name="foodIds" id="@food.ID" value="@food.ID"/>
+        <label for="@food.ID">@food.Name</label>
         <br />
     }
 

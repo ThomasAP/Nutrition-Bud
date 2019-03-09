@@ -17,6 +17,11 @@
         <input class="form-control" asp-for="Price"/>
         <span class="alert-danger" asp-validation-for="Price"></span>
     </div>
+
+    <div class="form-group">
+        <label asp-for="NutritionPlanID"></label>
+        <select asp-for="NutritionPlanID" asp-items="Model.NutritionPlans"></select>
+        </div>
     
     <input type="submit" value="Add Food" />
 
