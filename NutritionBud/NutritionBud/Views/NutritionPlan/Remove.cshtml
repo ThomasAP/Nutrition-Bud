@@ -6,8 +6,9 @@
 
     @foreach (var nutritionPlan in ViewBag.nutritionPlans)
     {
-        <input type="checkbox" name="nutritionPlanIds" id="@nutritionPlan.NutritionPlanId" value="@nutritionPlan.NutritionPlanId" />
-        <label for="@nutritionPlan.NutritionPlanId">@nutritionPlan.Name</label>
+        <input type="checkbox" name="nutritionPlanIds" id="@nutritionPlan.ID" value="@nutritionPlan.ID" />
+        <label for="@nutritionPlan.ID">@nutritionPlan.Name</label>
+        
         <br />
     }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NutritionBud.Data;
 using NutritionBud.Models;
 using NutritionBud.ViewModels;
 
@@ -12,21 +14,29 @@ namespace NutritionBud.Controllers
 {
     public class FoodController : Controller
     {
-        //Controller list to hold Foods until Database is running
-        
+
+        private NutritionPlanDbContext context;
+
+        //Receive a database instance from Startup.CS service 
+        public FoodController(NutritionPlanDbContext dbContext)
+        {
+            //store database instance in "context"
+            context = dbContext;
+        }
+
 
         // GET: /<controller>/
         public IActionResult Index()
         {         
-            //TODO: Look into using JSON to persist data before getting to database (or even as an alternative)
-            List<Food> foods = FoodData.foods;
+            //Receive a database item from the dbSet "Foods" in NutritionPlanDbContext, convert it to a list, and store it in "foods"
+            List<Food> foods = context.Foods.Include(f => f.NutritionPlan).ToList();
 
             return View(foods);
         }
 
         public IActionResult Add()
         {
-            AddFoodViewModel addFoodViewModel = new AddFoodViewModel();
+            AddFoodViewModel addFoodViewModel = new AddFoodViewModel(context.NutritionPlans.ToList());
             return View(addFoodViewModel);
         }
 
@@ -35,15 +45,17 @@ namespace NutritionBud.Controllers
         {
             if(ModelState.IsValid)
             {
-                //Add new food to foods
+                NutritionPlan newNutritionPlan = context.NutritionPlans.Single(p => p.ID == addFoodViewModel.NutritionPlanID);
+                //Add new food to context and save it
                 Food newFood = new Food
                 {
                     Name = addFoodViewModel.Name,
                     Price = addFoodViewModel.Price,
-                    CurrentPlan = addFoodViewModel.CurrentPlan
+                    NutritionPlan = newNutritionPlan
                 };
 
-                FoodData.Add(newFood);
+                context.Foods.Add(newFood);
+                context.SaveChanges();
 
                 return Redirect("/Food");
             }
@@ -54,7 +66,7 @@ namespace NutritionBud.Controllers
         public IActionResult Remove()
         {
             ViewBag.Title = "Remove Foods";
-            ViewBag.foods = FoodData.GetAll();
+            ViewBag.foods = context.Foods.ToList();
             return View();
         }
 
@@ -63,10 +75,12 @@ namespace NutritionBud.Controllers
         {
             //TODO: Remove foods from list
             foreach (int foodId in foodIds)
-            {               
-                FoodData.Remove(foodId);
+            {
+                Food theFood = context.Foods.Single(f => f.ID == foodId);
+                context.Foods.Remove(theFood);
             }
-            
+
+            context.SaveChanges();
 
             return Redirect("/Food");
         }

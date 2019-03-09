@@ -17,28 +17,29 @@ namespace NutritionBud.ViewModels
         [RegularExpression(@"^\$?\d+(\.(\d{2}))?$", ErrorMessage = "Please use XX.XX format.")]
         public decimal Price { get; set; }
 
-        public CurrentPlan CurrentPlan { get; set; }
 
-        public List<SelectListItem> AvailablePlans { get; set; }
+        //Property to represent the Nutrition Plan that user will choose
+        [Display(Name = "Nutrition Plan")]
+        public int NutritionPlanID { get; set; }
 
-        public AddFoodViewModel()
+        public List<SelectListItem> NutritionPlans { get; set; }
+
+
+        public AddFoodViewModel(IEnumerable<NutritionPlan> nutritionPlans)
         {
-            AvailablePlans = new List<SelectListItem>();
+            NutritionPlans = new List<SelectListItem>();
 
-            foreach(NutritionPlan plan in NutritionPlanData.nutritionPlans)
+            foreach (NutritionPlan plan in nutritionPlans)
             {
-                AvailablePlans.Add(new SelectListItem
+                NutritionPlans.Add(new SelectListItem
                 {
-                    Value = ((string)plan.Name),
-                    Text = plan.Name
-
+                    Value = plan.ID.ToString(),
+                    Text = plan.Name.ToString()
                 });
             }
 
-
         }
+        public AddFoodViewModel() { }
 
-
-        
     }
 }

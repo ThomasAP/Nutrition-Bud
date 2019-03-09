@@ -19,9 +19,10 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="CurrentPlan">Plan</label>
-        <select asp-for="CurrentPlan" asp-items="Model.AvailablePlans"></select>
+        <label asp-for="NutritionPlanID"></label>
+        <select asp-for="NutritionPlanID" asp-items="Model.NutritionPlans"></select>
     </div>
+
     
     <input type="submit" value="Add Food" />
 
