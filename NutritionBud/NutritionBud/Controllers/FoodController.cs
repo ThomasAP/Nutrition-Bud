@@ -85,13 +85,14 @@ namespace NutritionBud.Controllers
             return Redirect("/Food");
         }
 
+        
         public IActionResult NutritionPlan(int id)
         {
-            if (id == 0)
+            /*if (id == 0)
             {
                 return Redirect("/NutritionPlan");
             }
-
+            */
             NutritionPlan theNutritionPlan = context.NutritionPlans
                 .Include(plan => plan.Foods)
                 .Single(plan => plan.ID == id);

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NutritionBud.Migrations
 {
-    public partial class fixedSelectList : Migration
+    public partial class newPullAdd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
