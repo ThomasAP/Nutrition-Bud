@@ -29,7 +29,7 @@ namespace NutritionBud.Controllers
         public IActionResult Index()
         {         
             //Receive a database item from the dbSet "Foods" in NutritionPlanDbContext, convert it to a list, and store it in "foods"
-            List<Food> foods = context.Foods.Include(f => f.NutritionPlan).ToList();
+            IList<Food> foods = context.Foods.Include(n => n.NutritionPlan).ToList();
 
             return View(foods);
         }
@@ -45,7 +45,7 @@ namespace NutritionBud.Controllers
         {
             if(ModelState.IsValid)
             {
-                NutritionPlan newNutritionPlan = context.NutritionPlans.Single(p => p.ID == addFoodViewModel.NutritionPlanID);
+                NutritionPlan newNutritionPlan = context.NutritionPlans.Single(n => n.ID == addFoodViewModel.NutritionPlanID);
                 //Add new food to context and save it
                 Food newFood = new Food
                 {
@@ -83,6 +83,23 @@ namespace NutritionBud.Controllers
             context.SaveChanges();
 
             return Redirect("/Food");
+        }
+
+        public IActionResult NutritionPlan(int id)
+        {
+            if (id == 0)
+            {
+                return Redirect("/NutritionPlan");
+            }
+
+            NutritionPlan theNutritionPlan = context.NutritionPlans
+                .Include(plan => plan.Foods)
+                .Single(plan => plan.ID == id);
+
+            ViewBag.title = "Foods in " + theNutritionPlan.Name;
+
+            return View("Index", theNutritionPlan.Foods);
+
         }
     }
 }

@@ -9,8 +9,8 @@ using NutritionBud.Data;
 namespace NutritionBud.Migrations
 {
     [DbContext(typeof(NutritionPlanDbContext))]
-    [Migration("20190309151113_UpdatingSelectList")]
-    partial class UpdatingSelectList
+    [Migration("20190312200117_fixedSelectList")]
+    partial class fixedSelectList
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

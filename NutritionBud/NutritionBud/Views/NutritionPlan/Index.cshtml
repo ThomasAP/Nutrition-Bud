@@ -19,7 +19,7 @@ else
     @foreach (var nutritionPlan in Model)
     {
         <tr>
-            <td>@nutritionPlan.Name</td>
+            <td><a asp-controller="Food" asp-action="NutritionPlan" value="@nutritionPlan.ID">@nutritionPlan.Name</a></td>
             <td>@nutritionPlan.Description</td>
         </tr>
     }

@@ -11,10 +11,14 @@ namespace NutritionBud.Data
     {
         public DbSet<Food> Foods { get; set; }
         public DbSet<NutritionPlan> NutritionPlans { get; set; }
+        
 
         public NutritionPlanDbContext(DbContextOptions<NutritionPlanDbContext> options)
             : base(options)
         {
         }
+
+        
+
     }
 }

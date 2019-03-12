@@ -13,5 +13,7 @@ namespace NutritionBud.Models
 
         public int NutritionPlanID { get; set; }
         public NutritionPlan NutritionPlan { get; set; }
+
+        
     }
 }

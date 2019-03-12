@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NutritionBud.Data;
 using NutritionBud.Models;
 using NutritionBud.ViewModels;
@@ -26,7 +27,7 @@ namespace NutritionBud.Controllers
 
         public IActionResult Index()
         {
-            List<NutritionPlan> nutritionPlans = context.NutritionPlans.ToList();
+            IList<NutritionPlan> nutritionPlans = context.NutritionPlans.Include(f => f.Foods).ToList();
             return View(nutritionPlans);
         }
 
